@@ -1,14 +1,13 @@
 export module data.tools:sort;
 
-export import :element;
-import :pendable;
-import :reverse;
-import :take;
+import :types;
+import :element;
+import :sequence;
 
 namespace data {
 
-    template <sequence list> requires ordered<element_of<list>>
-    export bool sorted (const list &x) {
+    export template <sequence list> requires ordered<element_of<list>>
+    bool sorted (const list &x) {
         if (empty (x)) return true;
 
         struct sorted_inner {
@@ -35,14 +34,14 @@ namespace data {
             merge_queue (pend, a, rest (b), pend (n, first (b)));
     }
 
-    template <pendable list>
-    export list inline merge (const list &a, const list &b) {
+    export template <pendable list>
+    list inline merge (const list &a, const list &b) {
         if constexpr (queue<list>) return merge_pendable (append, a, b);
         else return reverse (merge_pendable (prepend, a, b));
     }
 
-    template <pendable list> requires ordered<element_of<list>>
-    export list merge_sort(const list &x) {
+    export template <pendable list> requires ordered<element_of<list>>
+    list merge_sort(const list &x) {
         auto z = size (x);
         if (z < 2) return x;
 

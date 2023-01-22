@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1...3.14)
+cmake_minimum_required (VERSION 3.20)
 
 # Back compatibility for VERSION range
 if(${CMAKE_VERSION} VERSION_LESS 3.12)
@@ -40,17 +40,21 @@ add_library (
   source/data/tools/empty.cpp
   source/data/tools/sequence.cpp
   source/data/tools/fold.cpp
-  source/data/tools/drop.cpp
-  source/data/tools/stack.cpp
-  source/data/tools/queue.cpp
-  source/data/tools/pendable.cpp
-  source/data/tools/reverse.cpp
-  source/data/tools/take.cpp
-  source/data/tools/join.cpp
-  source/data/tools/rotate.cpp
   source/data/tools/remove.cpp
   source/data/tools/contains.cpp
   source/data/tools/container.cpp
+  source/data/tools/element.cpp
+  source/data/tools/shuffle.cpp
+  source/data/tools/sort.cpp
+  source/data/tools/entry.cpp
+  source/data/tools/insert.cpp
+  source/data/tools/values.cpp
+  source/data/tools/set.cpp
+  source/data/tools/indexed.cpp
+  source/data/tools/map.cpp
+  source/data/tools/bi_tree.cpp
+  source/data/tools/iterable.cpp
+  source/data/tools/sequence_iterator.cpp
   source/data/tools.cpp
 )
 

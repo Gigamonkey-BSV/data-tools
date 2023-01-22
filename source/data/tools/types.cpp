@@ -20,5 +20,8 @@ namespace data {
 
     export template <typename X> concept ordered = std::totally_ordered<X>;
 
+    template <typename X> using unconst = std::remove_const_t<X>;
+    template <typename X> using unreference = std::remove_reference_t<X>;
+
 }
 

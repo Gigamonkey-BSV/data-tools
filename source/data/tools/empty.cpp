@@ -4,7 +4,7 @@ module;
 
 export module data.tools:empty;
 
-import :size;
+import :types;
 
 namespace data {
 
@@ -16,10 +16,11 @@ namespace data {
         return x.empty ();
     }
 
-    // if size is defined, then empty can be defined in terms of it.
-    export template <typename X> requires requires (const X &x) {
-        { size (x) };
-    } bool inline empty (const X &x) {
-        return size (x) == 0;
+    export template <typename X> bool inline empty (const X *x) {
+        return x != nullptr;
+    }
+
+    export template <typename X> bool inline empty (const ptr<X> x) {
+        return x != nullptr;
     }
 }

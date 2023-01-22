@@ -10,8 +10,8 @@ namespace data {
         { x.values () } -> sequence<element>;
     };
 
-    template <typename V, typename X, typename E> requires sequence<V, E> && container<X, E>
-    export V inline values (const X &x) {
+    export template <typename V, typename X, typename E> requires sequence<V, E> && container<X, E>
+    V inline values (const X &x) {
         return x.values ();
     }
 }

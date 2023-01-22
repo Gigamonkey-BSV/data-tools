@@ -17,4 +17,11 @@ namespace data {
     export template <has_size_method X> auto inline size (const X &x) {
         return x.size ();
     }
+
+    // if size is defined, then empty can be defined in terms of it.
+    export template <typename X> requires requires (const X &x) {
+        { size (x) };
+    } bool inline empty (const X &x) {
+        return size (x) == 0;
+    }
 }

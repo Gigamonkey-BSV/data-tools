@@ -1,6 +1,10 @@
+module;
+
+#include <concepts>
+
 export module data.tools:entry;
 
-import <concepts>
+import :valid;
 
 namespace data {
 

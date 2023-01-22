@@ -2,15 +2,16 @@ module;
 
 #include <concepts>
 
-export module data.tools:indexed;
+export module data.tools:map;
 
-import :types;
+import :container;
+import :indexed;
+import :entry;
 
 namespace data {
 
     export template <typename M, typename key, typename value = unreference<decltype (std::declval<const M> ()[std::declval<const key> ()])>>
-    concept indexed = requires(const M m, const key k) {
-        { m[k] } -> std::convertible_to<const value>;
-    };
+    concept map = container<M, entry<key, value>> && indexed<M, key, value>;
 
 }
+
