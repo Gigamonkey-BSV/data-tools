@@ -9,16 +9,21 @@ export import :empty;
 export import :sequence;
 export import :fold;
 export import :drop;
-export import :rotate;
 
+export import :stack;
+export import :queue;
+/*
+export import :pendable;
 export import :reverse;
 export import :take;
 export import :join;
+export import :remove;
+export import :rotate;
 
 export import :contains;
 export import :container;
 
-export import :element;             // find the element of a container.
+export import :element;             // get the type contained by a container.
 export import :shuffle;
 export import :sort;
 
@@ -54,6 +59,7 @@ export import :linked_tree;
 export import :for_each;
 
 export import :expression;
-
+*/
 export import :limit;               // representation of integers that include infinity.
                                     // just in case you want data structures of infinite size.
+

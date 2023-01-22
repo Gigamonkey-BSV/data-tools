@@ -1,21 +1,24 @@
-export module data.tools:types;
+module;
 
-import <optional>;
-import <variant>;
-import <function>;
-import <concepts>;
+#include <optional>
+#include <variant>
+#include <functional>
+#include <concepts>
+#include <memory>
+
+export module data.tools:types;
 
 namespace data {
 
-    template <typename X> export using ptr = std::shared_ptr<X>;
+    export template <typename X> using ptr = std::shared_ptr<X>;
 
-    template <typename X> export using function = std::function<X>;
+    export template <typename X> using function = std::function<X>;
 
-    template <typename X> export using maybe = std::optional<X>;
+    export template <typename X> using maybe = std::optional<X>;
 
-    template <typename... X> export using either = std::variant<X...>;
+    export template <typename... X> using either = std::variant<X...>;
 
-    template <typename X> export concept ordered = std::totally_ordered<X>;
+    export template <typename X> concept ordered = std::totally_ordered<X>;
 
 }
 

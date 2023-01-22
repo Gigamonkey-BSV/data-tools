@@ -1,6 +1,5 @@
-export module data.tools:take;
+export module data.tools:join;
 
-export import :sequence;
 import :pendable;
 import :reverse;
 
@@ -14,12 +13,12 @@ namespace data {
 
     template <stack list>
     list inline join_stack (const list &a, const list &b) {
-        if (n <= 0 || empty (x)) return reverse (taken);
-        return join_queue (rest (a), prepend (b, first (a)));
+        if (empty (a)) return b;
+        return join_stack (rest (a), prepend (b, first (a)));
     }
 
-    template <pendable list>
-    export list inline join (const list &a, const list &b) {
+    export template <pendable list>
+    list inline join (const list &a, const list &b) {
         if constexpr (queue<list>) return join_queue (a, b);
         else return reverse (join_stack (a, reverse (b)));
     }

@@ -1,6 +1,5 @@
-export module data.tools:take;
+export module data.tools:reverse;
 
-export import :sequence;
 import :pendable;
 
 namespace data {
@@ -17,8 +16,8 @@ namespace data {
         return append (reverse_queue (rest (x)), first (x));
     }
 
-    template <pendable list>
-    export list inline reverse (const list &x) {
+    export template <pendable list>
+    list inline reverse (const list &x) {
         if constexpr (queue<list>) return reverse_queue (x);
         else return reverse_stack (x);
     }

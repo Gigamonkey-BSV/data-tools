@@ -1,3 +1,7 @@
+module;
+
+#include <concepts>
+
 export module data.tools:empty;
 
 import :size;
@@ -8,13 +12,14 @@ namespace data {
         { x.empty () } -> std::same_as<bool>;
     };
 
-    template <has_empty_method X> export bool inline empty (const X &x) {
+    export template <has_empty_method X> bool inline empty (const X &x) {
         return x.empty ();
     }
 
-    template <typename X> requires requires (const X &x) {
+    // if size is defined, then empty can be defined in terms of it.
+    export template <typename X> requires requires (const X &x) {
         { size (x) };
-    } export bool inline empty (const X &x) {
+    } bool inline empty (const X &x) {
         return size (x) == 0;
     }
 }
