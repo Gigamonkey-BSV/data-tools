@@ -5,6 +5,7 @@ module;
 export module data.tools:bi_tree;
 
 import :types;
+import :empty;
 import :container;
 
 namespace data {
@@ -40,11 +41,41 @@ namespace data {
         { tree {e} };
     };
 
-    template <typename tree, typename element = unreference<decltype (std::declval<const tree> ().root ())>>
+    export template <typename tree, typename element = unreference<decltype (std::declval<const tree> ().root ())>>
     concept bi_tree = container<tree, element> && has_bi_tree_constructor<tree, element> && requires (const tree &tr) {
         { root (tr) } -> std::convertible_to<const element&>;
         { left (tr) } -> std::convertible_to<const tree&>;
         { right (tr) } -> std::convertible_to<const tree&>;
+    };
+
+    // there are two ways of ordering the elements of a tree
+    // depending on the type of data structure we want. The
+    // root may go between the two branches, which we call
+    // the infix ordering, or it may be before both branches,
+    // which we call the prefix ordering.
+    template <typename tree, typename P>
+    void for_each_tree_infix (const tree &t, P f) {
+        if (empty(t)) return;
+        for_each_infix (left (t), f);
+        f (root (t));
+        for_each_infix (right (t), f);
+    }
+
+    template <typename tree, typename P>
+    void for_each_tree_prefix (const tree &t, P f) {
+        if (empty (t)) return;
+        f (root (t));
+        for_each_prefix (left (t), f);
+        for_each_prefix (right (t), f);
+    }
+
+    // a node that could be used to make a tree.
+    template <typename value, typename tree>
+    struct tree_node final {
+        value Value;
+        tree Left;
+        tree Right;
+        tree_node(const value& v, tree l, tree r) : Value {v}, Left {l}, Right {r} {}
     };
 
 }

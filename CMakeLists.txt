@@ -9,7 +9,8 @@ project (
   data-tools
   VERSION 0.0.0
   DESCRIPTION "functional data structures and high-level constructs in c++"
-  LANGUAGES CXX)
+  LANGUAGES CXX
+)
 
 # Set cmake as import path for Find*.cmake files
 include (${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
@@ -22,10 +23,10 @@ option (PACKAGE_TESTS "Build the tests" OFF)
 add_definitions ("-DHAS_BOOST")
 
 if (PACKAGE_TESTS)
-  include(CTest)
-  find_package(GTest REQUIRED)
-  enable_testing()
-  add_subdirectory(test)
+  include (CTest)
+  find_package (GTest REQUIRED)
+  enable_testing ()
+  add_subdirectory (test)
 
 endif ()
 
@@ -35,6 +36,8 @@ add_library (
   data-tools STATIC
   source/data/tools/types.cpp
   source/data/tools/valid.cpp
+  source/data/tools/replace.cpp
+  source/data/tools/function.cpp
   source/data/math/limit.cpp
   source/data/tools/size.cpp
   source/data/tools/empty.cpp
@@ -53,8 +56,20 @@ add_library (
   source/data/tools/indexed.cpp
   source/data/tools/map.cpp
   source/data/tools/bi_tree.cpp
+  source/data/tools/bi_tree_sequence.cpp
   source/data/tools/iterable.cpp
   source/data/tools/sequence_iterator.cpp
+  source/data/tools/list.cpp
+  source/data/tools/map_set.cpp
+  source/data/tools/bi_tree_map.cpp
+  source/data/tools/priority_queue.cpp
+  source/data/tools/ordered_stack.cpp
+  source/data/tools/rb.cpp
+  source/data/tools/linked_stack.cpp
+  source/data/tools/linked_bi_tree.cpp
+  source/data/tools/partition.cpp
+  source/data/tools/map_thread.cpp
+  source/data/tools/for_each.cpp
   source/data/tools.cpp
 )
 
